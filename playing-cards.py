@@ -1,8 +1,24 @@
+import json
 import random
 
 # PSEUDOCODE:
 
 # Deck setup: Read data from the deck.json file into a new list.
+
+def parse_json_list(filename):
+    '''Turn a JSON file, formatted as a list, into a list.'''
+    assert(type(filename) == type(""))
+    assert(filename.endswith(".json"))
+
+    with open(filename, "rt") as filehandle:
+        deck_data = json.loads(filehandle.read())
+
+    deck = deck_data["deck"]
+    assert(type(deck) == type([]))
+    for card in deck:
+        assert(type(card) == type(""))
+
+    return deck
 
 # Open a menu for the player to choose actions.
 
@@ -30,6 +46,7 @@ import random
 
 def main():
     print("Hello world")
+    print(parse_json_list("deck.json"))
 
 main()
 
