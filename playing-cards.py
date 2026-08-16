@@ -26,6 +26,7 @@ def parse_json_list(filename):
 def draw_card(deck, discard_pile):
     '''Pick a random card from the deck list. Remove it from the
     deck and append it to the discard pile. Return it.
+    If the deck is empty, return 0 to signal that it is empty.
 
     This does NOT display the card name onscreen.'''
     assert(type(deck) == type([]))
@@ -36,21 +37,21 @@ def draw_card(deck, discard_pile):
         deck.remove(new_card)
         discard_pile.append(new_card)
 
-        print(new_card)
-        print(deck)
-        print(discard_pile)
-
         return new_card
+
+    return 0
 
 # Action 2: Reshuffle Deck
 def reshuffle_deck(deck, discard_pile):
     '''Add each card from the discard pile back into the deck.
-    Empty the discard pile.'''
+    Empty the discard pile. Return both lists.'''
     assert(type(deck) == type([]))
     assert(type(discard_pile) == type([]))
 
     deck = deck + discard_pile
     discard_pile = []
+
+    return deck, discard_pile
 
 # Action 3: Add Jokers
 def add_jokers(deck):
@@ -67,37 +68,43 @@ def display_discard_pile(discard_pile):
 
     print(discard_pile)
 
-
 def main():
-    print("Hello world")
+    # SETUP: Setting up the deck and discard pile.
     deck = parse_json_list("deck.json")
     discard_pile = []
-    # for card in deck:
-    #     print(card)
+    next_step = None
 
-    new_card1 = draw_card(deck, discard_pile)
-    new_card2 = draw_card(deck, discard_pile)
-    new_card3 = draw_card(deck, discard_pile)
+    while next_step != "stop":
+        print("Type the number of your desired action:")
+        print("1. Draw a Card")
+        print("2. Reshuffle Deck")
+        print("3. Add Jokers")
+        print("4. View Discard Pile")
 
-    print(new_card1)
-    print(new_card2)
-    print(new_card3)
+        next_step = input("Choose your action: ")
+        if next_step == "1":
+            new_card = draw_card(deck, discard_pile)
+            if new_card != 0:
+                print(new_card)
+            else:
+                print("Deck empty. Please reshuffle.")
+            move_on = input("Press ENTER to continue.")
 
-    print("RESHUFFLING:")
+        elif next_step == "2":
+            deck, discard_pile = reshuffle_deck(deck, discard_pile)
+            print("Deck Reshuffled!")
 
-    reshuffle_deck(deck, discard_pile)
+            move_on = input("Press ENTER to continue.")
 
-    add_jokers(deck)
+        elif next_step == "3":
+            add_jokers(deck)
+            move_on = input("Press ENTER to continue.")
 
-    print(deck)
+        elif next_step == "4":
+            display_discard_pile(discard_pile)
+            move_on = input("Press ENTER to continue.")
 
-    draw_card(deck, discard_pile)
-    draw_card(deck, discard_pile)
-    draw_card(deck, discard_pile)
-    draw_card(deck, discard_pile)
-    draw_card(deck, discard_pile)
-
-    display_discard_pile(discard_pile)
+    print("Goodbye!")
 
     
 main()
