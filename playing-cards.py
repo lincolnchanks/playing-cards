@@ -23,13 +23,22 @@ def parse_json_list(filename):
 # Open a menu for the player to choose actions.
 
 # Action 1: Draw a Card
-def draw_card(deck):
+def draw_card(deck, discard_pile):
     '''Pick a random card from the deck list. Remove it from the
     deck and append it to the discard pile. Return it.'''
     assert(type(deck) == type([]))
+    assert(type(discard_pile) == type([]))
 
-    new_card = random.choice(deck)
-    print(new_card)
+    if len(deck) > 0:
+        new_card = random.choice(deck)
+        deck.remove(new_card)
+        discard_pile.append(new_card)
+
+        print(new_card)
+        print(deck)
+        print(discard_pile)
+
+        return new_card
 
     # Pick a random card from the deck list. Remove it from the deck list and append it
     # to the discard pile list.
@@ -54,13 +63,20 @@ def draw_card(deck):
 def main():
     print("Hello world")
     deck = parse_json_list("deck.json")
+    discard_pile = []
     # for card in deck:
     #     print(card)
 
-    draw_card(deck)
-    draw_card(deck)
-    draw_card(deck)
+    new_card1 = draw_card(deck, discard_pile)
+    new_card2 = draw_card(deck, discard_pile)
+    new_card3 = draw_card(deck, discard_pile)
 
+    print(new_card1)
+    print(new_card2)
+    print(new_card3)
+
+
+    
 main()
 
 
