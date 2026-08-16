@@ -25,7 +25,9 @@ def parse_json_list(filename):
 # Action 1: Draw a Card
 def draw_card(deck, discard_pile):
     '''Pick a random card from the deck list. Remove it from the
-    deck and append it to the discard pile. Return it.'''
+    deck and append it to the discard pile. Return it.
+
+    This does NOT display the card name onscreen.'''
     assert(type(deck) == type([]))
     assert(type(discard_pile) == type([]))
 
@@ -40,32 +42,30 @@ def draw_card(deck, discard_pile):
 
         return new_card
 
-    # Pick a random card from the deck list. Remove it from the deck list and append it
-    # to the discard pile list.
-    # Display the card name on the screen.
-
 # Action 2: Reshuffle Deck
 def reshuffle_deck(deck, discard_pile):
     '''Add each card from the discard pile back into the deck.
     Empty the discard pile.'''
+    assert(type(deck) == type([]))
+    assert(type(discard_pile) == type([]))
 
     deck = deck + discard_pile
     discard_pile = []
-    print(deck)
-    print(discard_pile)
-
-    # Option 1:
-        # Add each card from the discard pile list to the deck list. Empty the discard pile list.
-    # Option 2:
-        # Re-copy the deck list from deck.json, then empty the discard pile.
 
 # Action 3: Add Jokers
+def add_jokers(deck):
+    '''Add "Red Roker" and "Black Joker" to the deck list.'''
+    assert(type(deck) == type([]))
 
-    # Add "Red Joker" and "Black Joker" to the deck list.
+    deck.append("Red Joker")
+    deck.append("Black Joker")
 
 # Action 4: View Discard Pile
+def display_discard_pile(discard_pile):
+    '''Displays the Discard Pile.'''
+    assert(type(discard_pile) == type([]))
 
-    # Display each card in the discard pile.
+    print(discard_pile)
 
 
 def main():
@@ -87,7 +87,17 @@ def main():
 
     reshuffle_deck(deck, discard_pile)
 
+    add_jokers(deck)
 
+    print(deck)
+
+    draw_card(deck, discard_pile)
+    draw_card(deck, discard_pile)
+    draw_card(deck, discard_pile)
+    draw_card(deck, discard_pile)
+    draw_card(deck, discard_pile)
+
+    display_discard_pile(discard_pile)
 
     
 main()
