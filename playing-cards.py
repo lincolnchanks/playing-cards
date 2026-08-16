@@ -1,10 +1,7 @@
 import json
 import random
 
-# PSEUDOCODE:
-
 # Deck setup: Read data from the deck.json file into a new list.
-
 def parse_json_list(filename):
     '''Turn a JSON file, formatted as a list, into a list.'''
     assert(type(filename) == type(""))
@@ -19,8 +16,6 @@ def parse_json_list(filename):
         assert(type(card) == type(""))
 
     return deck
-
-# Open a menu for the player to choose actions.
 
 # Action 1: Draw a Card
 def draw_card(deck, discard_pile):
@@ -108,8 +103,6 @@ def main():
 
     
 main()
-
-
 
 # Misc:
     # A function to add or remove any card by name.
