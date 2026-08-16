@@ -45,6 +45,14 @@ def draw_card(deck, discard_pile):
     # Display the card name on the screen.
 
 # Action 2: Reshuffle Deck
+def reshuffle_deck(deck, discard_pile):
+    '''Add each card from the discard pile back into the deck.
+    Empty the discard pile.'''
+
+    deck = deck + discard_pile
+    discard_pile = []
+    print(deck)
+    print(discard_pile)
 
     # Option 1:
         # Add each card from the discard pile list to the deck list. Empty the discard pile list.
@@ -74,6 +82,11 @@ def main():
     print(new_card1)
     print(new_card2)
     print(new_card3)
+
+    print("RESHUFFLING:")
+
+    reshuffle_deck(deck, discard_pile)
+
 
 
     
